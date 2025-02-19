@@ -29,7 +29,7 @@ function booksToPage() {
             <p class="book-title">${book.title}</p>
             <p class="book-author">${book.author}</p>
             <div class="book-info">
-                <p>${book.pages}</p>
+                <p>${book.pages} pages</p>
                 <p>${book.year}</p>
             </div>
         `;
