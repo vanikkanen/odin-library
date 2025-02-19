@@ -13,3 +13,7 @@ function Book(title, author, pages, year, read) {
     this.read = read
 }
 
+function addBookToLibrary(title, author, pages, year, read) {
+    const newBook = new Book(title, author, pages, year, read)
+    myLibrary.push(newBook)
+}
