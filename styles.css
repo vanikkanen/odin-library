@@ -81,3 +81,18 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+.add-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 50%;
+    background-color: lightgray;
+}
+
+.add-card:hover {
+    cursor: pointer;
+    opacity: 80%;
+    background-color: lightblue;
+}

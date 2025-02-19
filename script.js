@@ -22,6 +22,8 @@ function booksToPage() {
 
     const pageLibrary = document.querySelector(".library-container")
 
+    const fragment = document.createDocumentFragment();
+
     myLibrary.forEach(book => {
         const card = document.createElement("div")
         card.className = "book-card"
@@ -33,9 +35,18 @@ function booksToPage() {
                 <p>${book.year}</p>
             </div>
         `;
-        pageLibrary.appendChild(card)
+        fragment.appendChild(card)
     })
+
+    pageLibrary.insertBefore(fragment, pageLibrary.firstChild)
+
 }
+
+const addCard = document.querySelector(".add-card")
+addCard.addEventListener("click", () => {
+    console.log("CLICK")
+})
+
 
 addBookToLibrary("Test1", "John Doe", 123, 2022, false)
 addBookToLibrary("Test2", "John Doe", 123, 2023, false)
