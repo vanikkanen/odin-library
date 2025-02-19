@@ -18,6 +18,10 @@ function addBookToLibrary(title, author, pages, year, read) {
     myLibrary.push(newBook)
 }
 
+function removeFromLibrary(index) {
+    myLibrary.splice(index, 1)
+}
+
 function booksToPage() {
     const pageLibrary = document.querySelector(".library-container")
 
@@ -39,7 +43,7 @@ function booksToPage() {
     });
 
     // Create and append book cards
-    myLibrary.forEach(book => {
+    myLibrary.forEach((book, idx) => {
         const card = document.createElement("div")
         card.className = "book-card"
         card.innerHTML = `
@@ -49,7 +53,15 @@ function booksToPage() {
                 <p>${book.pages} pages</p>
                 <p>${book.year}</p>
             </div>
+            <button class="delete-button" data-index="${idx}">Remove</button>
         `
+
+        const deleteButton = card.querySelector(".delete-button")
+        deleteButton.addEventListener("click", () => {
+            removeFromLibrary(idx)
+            booksToPage()
+        })
+        
         pageLibrary.appendChild(card)
     });
     pageLibrary.appendChild(addCard)
