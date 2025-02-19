@@ -1,3 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: "Lora";
+    src: url(./resources/fonts/Lora-VariableFont_wght.ttf);
+    font-weight: 100 900;
+    font-stretch: 75% 125%;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lora";
+    src: url(./resources/fonts/Lora-Italic-VariableFont_wght.ttf);
+    font-weight: 100 900;
+    font-stretch: 75% 125%;
+    font-style: italic;
+}
+
+:root {
+    --card-width: 150px;
+    --card-height: 200px;
+
+    --main-color: #D6C8B8;
+    --secondary-color: #A3C8D3;
+    --highlight-color: #F1A7A3;
+    --secondary-highlight-color: #A8D5BA;
+    --text-color: #4A4A4A;
+
+    --main-shadow: 0px 5px 5px var(--text-color)
+}
+
+.page-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    background-color: var(--main-color);
+    font-family: "Lora", sans-serif;
+}
+
+.header {
+    height: 150px;
+    background-color: var(--secondary-color);
+    box-shadow: var(--main-shadow);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-title {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.library-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
+    gap: 16px;
+    padding: 32px;
+}
+
 .book-card {
-    border: 1px solid black;
+    width: var(--card-width);
+    height: var(--card-height);
+    border: 1px solid var(--secondary-highlight-color);
+    box-shadow: var(--main-shadow);
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    box-sizing: border-box;
+    padding: 16px;
+
+    display: flex;
+    flex-direction: column;
+
 }
