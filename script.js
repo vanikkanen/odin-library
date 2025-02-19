@@ -17,3 +17,28 @@ function addBookToLibrary(title, author, pages, year, read) {
     const newBook = new Book(title, author, pages, year, read)
     myLibrary.push(newBook)
 }
+
+function booksToPage() {
+
+    const pageLibrary = document.querySelector(".library-container")
+
+    myLibrary.forEach(book => {
+        const card = document.createElement("div")
+        card.className = "book-card"
+        card.innerHTML = `
+            <p class="book-title">${book.title}</p>
+            <p class="book-author">${book.author}</p>
+            <div class="book-info">
+                <p>${book.pages}</p>
+                <p>${book.year}</p>
+            </div>
+        `;
+        pageLibrary.appendChild(card)
+    })
+}
+
+addBookToLibrary("Test1", "John Doe", 123, 2022, false)
+addBookToLibrary("Test2", "John Doe", 123, 2023, false)
+addBookToLibrary("Test3", "John Doe", 123, 2024, false)
+addBookToLibrary("Test4", "John Doe", 123, 2025, false)
+booksToPage()
