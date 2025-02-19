@@ -53,7 +53,13 @@ function booksToPage() {
                 <p>${book.pages} pages</p>
                 <p>${book.year}</p>
             </div>
-            <button class="delete-button" data-index="${idx}">Remove</button>
+            <div class="book-card-overlay">
+                <button class="delete-button" data-index="${idx}">
+                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
+                    </svg>
+                </button>
+            </div>
         `
 
         const deleteButton = card.querySelector(".delete-button")
@@ -61,7 +67,7 @@ function booksToPage() {
             removeFromLibrary(idx)
             booksToPage()
         })
-        
+
         pageLibrary.appendChild(card)
     });
     pageLibrary.appendChild(addCard)

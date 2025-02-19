@@ -64,6 +64,7 @@
 }
 
 .book-card {
+    position: relative;
     width: var(--card-width);
     height: var(--card-height);
     border: 1px solid var(--secondary-highlight-color);
@@ -74,7 +75,41 @@
     padding: 16px;
 
     display: grid;
+}
 
+.book-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+}
+
+.book-card:hover .book-card-overlay {
+    opacity: 1;
+}
+
+.delete-button {
+    color: var(--highlight-color);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.delete-button:hover {
+   color: red;
 }
 
 .book-title {
