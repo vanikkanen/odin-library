@@ -12,13 +12,26 @@
         <div class="header">
             <div class="header-title">Library</div>
         </div>
-        <div class="library-container">
-            <div class="add-card book-card">
-                <svg class="card-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
-                </svg>
-            </div>
-        </div>
+        <div class="library-container"></div>
     </div>
+    <dialog class="book-modal">
+        <p>Add a new book to your library</p>
+        <form id="book-form" method="dialog" onsubmit="handleFormSubmit(event)" class="book-form">
+            <label for="title">Title</label>
+            <input autofocus id="title" name="title" type="text" required/>
+            <label for="author">Author</label>
+            <input id="author" name="author" type="text" required/>
+            <label for="pages">Pages</label>
+            <input id="pages" name="pages" type="number" min="1" max="3000" required/>
+            <label for="year">Publishing Year</label>
+            <input id="year" name="year" type="number" min="0" max="2025" required/>
+            <label for="read">Read</label>
+            <input id="read" name="read" type="checkbox"/>
+            <div>
+                <input class="submit-button" type="submit" form="book-form" value="Add"/>
+                <button class="close-button" onclick="document.querySelector('.book-modal').close();">Close</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>
