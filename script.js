@@ -50,6 +50,9 @@ function booksToPage() {
     myLibrary.forEach((book, idx) => {
         const card = document.createElement("div")
         card.className = "book-card"
+
+        book.read ? card.classList.add("card-read-status-read") : card.classList.add("card-read-status-not-read")
+
         card.innerHTML = `
             <p class="book-title">${book.title}</p>
             <p class="book-author">${book.author}</p>
@@ -78,9 +81,12 @@ function booksToPage() {
         })
 
         const readButton = card.querySelector(".read-button")
+        book.read ? readButton.classList.add("read-status-read") : readButton.classList.add("read-status-not-read")
         readButton.addEventListener("click", () => {
             book.toggleRead()
+            booksToPage()
         })
+
         pageLibrary.appendChild(card)
     });
     pageLibrary.appendChild(addCard)

@@ -125,9 +125,31 @@
     height: 40px;
 }
 
-.read-button:hover {
+.card-read-status-read {
+    border: 2px solid var(--secondary-highlight-color);
+}
+
+.card-read-status-not-read {
+    border: 2px solid var(--highlight-color);
+}
+
+.read-button.read-status-read {
+    color: var(--highlight-color);
+}
+
+.read-button.read-status-read:hover {
+    color: red;
+}
+
+.read-button.read-status-not-read {
+    color: var(--secondary-highlight-color);
+}
+
+.read-button.read-status-not-read:hover {
     color: greenyellow;
 }
+
+
 
 .book-title {
     font-size: 20px;
