@@ -1,4 +1,11 @@
 const myLibrary = []
+myLibrary.push(new Book("To Kill a Mockingbird", "Harper Lee", 281, 1960, true));
+myLibrary.push(new Book("1984", "George Orwell", 328, 1949, false));
+myLibrary.push(new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, 1925, true));
+myLibrary.push(new Book("Pride and Prejudice", "Jane Austen", 279, 1813, false));
+myLibrary.push(new Book("The Catcher in the Rye", "J.D. Salinger", 214, 1951, false));
+
+booksToPage()
 
 function Book(title, author, pages, year, read) {
 
@@ -103,9 +110,3 @@ function handleFormSubmit(event) {
     const dialog = document.querySelector(".book-modal")
     dialog.close()
 }
-
-addBookToLibrary("Test1", "John Doe", 123, 2022, false)
-addBookToLibrary("Test2", "John Doe", 123, 2023, false)
-addBookToLibrary("Test3", "John Doe", 123, 2024, false)
-addBookToLibrary("Test4", "John Doe", 123, 2025, false)
-booksToPage()
