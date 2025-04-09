@@ -23,13 +23,13 @@
     --card-width: 150px;
     --card-height: 200px;
 
-    --main-color: #D6C8B8;
-    --secondary-color: #A3C8D3;
-    --highlight-color: #F1A7A3;
-    --secondary-highlight-color: #A8D5BA;
-    --text-color: #4A4A4A;
+    --main-color: #d6c8b8;
+    --secondary-color: #a3c8d3;
+    --highlight-color: #f1a7a3;
+    --secondary-highlight-color: #a8d5ba;
+    --text-color: #4a4a4a;
 
-    --main-shadow: 0px 5px 5px var(--text-color)
+    --main-shadow: 0px 5px 5px var(--text-color);
 }
 
 .page-container {
@@ -110,7 +110,7 @@
 
 .delete-button:hover {
     color: red;
- }
+}
 
 .read-button {
     color: var(--secondary-highlight-color);
@@ -149,8 +149,6 @@
     color: greenyellow;
 }
 
-
-
 .book-title {
     font-size: 20px;
     font-weight: bold;
@@ -178,7 +176,14 @@
     padding: 32px;
     box-sizing: border-box;
     gap: 8px;
+}
 
+.input-error {
+    border: 2px solid var(--highlight-color);
+}
+
+.error-message {
+    color: var(--highlight-color);
 }
 
 .book-modal {

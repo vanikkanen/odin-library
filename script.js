@@ -1,74 +1,78 @@
 class Library {
-    #myLibrary
+    #myLibrary;
 
     constructor() {
-        this.#myLibrary = []
+        this.#myLibrary = [];
     }
     addBookToLibrary(title, author, pages, year, read) {
-        const newBook = new Book(title, author, pages, year, read)
-        this.#myLibrary.push(newBook)
+        const newBook = new Book(title, author, pages, year, read);
+        this.#myLibrary.push(newBook);
     }
-    
+
     removeFromLibrary(index) {
-        this.#myLibrary.splice(index, 1)
+        this.#myLibrary.splice(index, 1);
     }
 
     getLibrary() {
-        return this.#myLibrary
+        return this.#myLibrary;
     }
 }
 class Book {
     constructor(title, author, pages, year, read) {
-        this.title = title
-        this.author = author
-        this.pages = pages
-        this.year = year
-        this.read = read
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.year = year;
+        this.read = read;
     }
     toggleRead() {
-        this.read = !this.read
+        this.read = !this.read;
     }
 }
 
 class Controller {
     constructor() {
-        this.library = new Library()
-        this.library.addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, 1960, true)
-        this.library.addBookToLibrary("1984", "George Orwell", 328, 1949, false)
-        this.library.addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180, 1925, true)
-        this.library.addBookToLibrary("Pride and Prejudice", "Jane Austen", 279, 1813, false)
-        this.library.addBookToLibrary("The Catcher in the Rye", "J.D. Salinger", 214, 1951, false)
-    
-        document.querySelector(".book-form").addEventListener("submit", (event) => this.handleFormSubmit(event))
+        this.library = new Library();
+        this.library.addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, 1960, true);
+        this.library.addBookToLibrary("1984", "George Orwell", 328, 1949, false);
+        this.library.addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180, 1925, true);
+        this.library.addBookToLibrary("Pride and Prejudice", "Jane Austen", 279, 1813, false);
+        this.library.addBookToLibrary("The Catcher in the Rye", "J.D. Salinger", 214, 1951, false);
+
+        document
+            .querySelector(".book-form")
+            .addEventListener("submit", event => this.handleFormSubmit(event));
     }
 
     booksToPage() {
-        const pageLibrary = document.querySelector(".library-container")
-    
-        pageLibrary.innerHTML = ""
-    
+        const pageLibrary = document.querySelector(".library-container");
+
+        pageLibrary.innerHTML = "";
+
         // Add the "Add Book" button
-        const addCard = document.createElement("div")
-        addCard.className = "add-card book-card"
+        const addCard = document.createElement("div");
+        addCard.className = "add-card book-card";
         addCard.innerHTML = `
             <svg class="card-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
             </svg>
-        `
-    
+        `;
+
         // Attach click event listener for opening the dialog
-        const dialog = document.querySelector(".book-modal")
+        const dialog = document.querySelector(".book-modal");
         addCard.addEventListener("click", () => {
-            dialog.showModal()
+            dialog.showModal();
         });
-    
+
         // Create and append book cards
         this.library.getLibrary().forEach((book, idx) => {
-            const card = document.createElement("div")
-            card.className = "book-card"
-    
-            book.read ? card.classList.add("card-read-status-read") : card.classList.add("card-read-status-not-read")
-    
+            const card = document.createElement("div");
+            card.className = "book-card";
+
+            book.read
+                ? card.classList.add("card-read-status-read")
+                : card.classList.add("card-read-status-not-read");
+
             card.innerHTML = `
                 <p class="book-title">${book.title}</p>
                 <p class="book-author">${book.author}</p>
@@ -88,36 +92,95 @@ class Controller {
                         </svg>
                     </button>
                 </div>
-            `
-    
-            const deleteButton = card.querySelector(".delete-button")
+            `;
+
+            const deleteButton = card.querySelector(".delete-button");
             deleteButton.addEventListener("click", () => {
-                this.library.removeFromLibrary(idx)
-                this.booksToPage()
-            })
-    
-            const readButton = card.querySelector(".read-button")
-            book.read ? readButton.classList.add("read-status-read") : readButton.classList.add("read-status-not-read")
+                this.library.removeFromLibrary(idx);
+                this.booksToPage();
+            });
+
+            const readButton = card.querySelector(".read-button");
+            book.read
+                ? readButton.classList.add("read-status-read")
+                : readButton.classList.add("read-status-not-read");
             readButton.addEventListener("click", () => {
-                book.toggleRead()
-                this.booksToPage()
-            })
-    
-            pageLibrary.appendChild(card)
+                book.toggleRead();
+                this.booksToPage();
+            });
+
+            pageLibrary.appendChild(card);
         });
-        pageLibrary.appendChild(addCard)
+        pageLibrary.appendChild(addCard);
     }
-    
+
+    #clearErrors() {
+        document.querySelectorAll(".error-message").forEach(span => (span.textContent = ""));
+        document
+            .querySelectorAll(".input-error")
+            .forEach(input => input.classList.remove("input-error"));
+    }
+
+    #setInputField(fieldId, message) {
+        const input = document.getElementById(fieldId);
+        const errorSpan = document.querySelector(`#${fieldId} + .error-message`);
+        if (input) input.classList.add("input-error");
+        if (errorSpan) errorSpan.textContent = message;
+    }
+
+    #validateFormData(formData) {
+        this.#clearErrors();
+
+        const title = formData.get("title")?.trim();
+        const author = formData.get("author")?.trim();
+        const pages = parseInt(formData.get("pages"), 10);
+        const year = parseInt(formData.get("year"), 10);
+
+        let isValid = true;
+
+        if (!title) {
+            this.#setInputField("title", "Title is required");
+            isValid = false;
+        }
+        if (!author) {
+            this.#setInputField("author", "Author is required");
+            isValid = false;
+        }
+        if (!Number.isInteger(pages) || pages <= 0) {
+            this.#setInputField("pages", "Pages must be a positive number");
+            isValid = false;
+        }
+        if (!Number.isInteger(year) || year <= 0) {
+            this.#setInputField("year", "Year must be a positive number");
+            isValid = false;
+        }
+        if (year > new Date().getFullYear()) {
+            this.#setInputField("year", "Cannot add a book published in the future");
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
     handleFormSubmit(event) {
-        event.preventDefault()
-        const form = event.target
-        const formData = new FormData(form)
-        this.library.addBookToLibrary(formData.get("title"), formData.get("author"), +formData.get("pages"), +formData.get("year"), formData.get("read")!==null)
-        this.booksToPage()
-        const dialog = document.querySelector(".book-modal")
-        dialog.close()
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+
+        if (!this.#validateFormData(formData)) return;
+
+        this.library.addBookToLibrary(
+            formData.get("title"),
+            formData.get("author"),
+            +formData.get("pages"),
+            +formData.get("year"),
+            formData.get("read") !== null
+        );
+        this.booksToPage();
+        const dialog = document.querySelector(".book-modal");
+        dialog.close();
     }
 }
 
-const controller = new Controller()
-controller.booksToPage()
+const controller = new Controller();
+controller.booksToPage();

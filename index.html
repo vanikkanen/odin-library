@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
-    <div class="page-container">
-        <div class="header">
-            <div class="header-title">Library</div>
-        </div>
-        <div class="library-container"></div>
-    </div>
-    
-    <dialog class="book-modal">
-        <p>Add a new book to your library</p>
-        <form id="book-form" method="dialog" class="book-form">
-            <label for="title">Title</label>
-            <input autofocus id="title" name="title" type="text" required/>
-            <label for="author">Author</label>
-            <input id="author" name="author" type="text" required/>
-            <label for="pages">Pages</label>
-            <input id="pages" name="pages" type="number" min="1" max="3000" required/>
-            <label for="year">Publishing Year</label>
-            <input id="year" name="year" type="number" min="0" max="2025" required/>
-            <label for="read">Read</label>
-            <input id="read" name="read" type="checkbox"/>
-            <div>
-                <input class="submit-button" type="submit" form="book-form" value="Add"/>
-                <button class="close-button" onclick="document.querySelector('.book-modal').close();">Close</button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <div class="page-container">
+            <div class="header">
+                <div class="header-title">Library</div>
             </div>
-        </form>
-    </dialog>
-</body>
+            <div class="library-container"></div>
+        </div>
+
+        <dialog class="book-modal">
+            <p>Add a new book to your library</p>
+            <form id="book-form" method="dialog" class="book-form" novalidate>
+                <label for="title">Title</label>
+                <input autofocus id="title" name="title" type="text" />
+                <span class="error-message" data-error-for="title"></span>
+                <label for="author">Author</label>
+                <input id="author" name="author" type="text" />
+                <span class="error-message" data-error-for="author"></span>
+                <label for="pages">Pages</label>
+                <input id="pages" name="pages" type="number" />
+                <span class="error-message" data-error-for="pages"></span>
+                <label for="year">Publishing Year</label>
+                <input id="year" name="year" type="number" />
+                <span class="error-message" data-error-for="year"></span>
+                <label for="read">Read</label>
+                <input id="read" name="read" type="checkbox" />
+                <div>
+                    <input class="submit-button" type="submit" form="book-form" value="Add" />
+                    <button
+                        class="close-button"
+                        onclick="document.querySelector('.book-modal').close();"
+                    >
+                        Close
+                    </button>
+                </div>
+            </form>
+        </dialog>
+    </body>
 </html>
